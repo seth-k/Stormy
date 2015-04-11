@@ -10,4 +10,16 @@
     <string name="title_activity_daily_forecast_activtiy">DailyForecastActivtiy</string>
     <string name="no_daily_forecast_data">There is no forcast data to display</string>
     <string name="title_activity_hourly_forecast">HourlyForecastActivity</string>
+    <string name="loading_forecast">Getting weather data...</string>
+    <string name="no_location">Not Found</string>
+    <string name="temperature_loading">---</string>
+    <string name="time_loading">...</string>
+    <string name="percent_loading">--%</string>
+    <string name="label_hourly">Hourly</string>
+    <string name="label_daily">Daily</string>
+    <string name="label_humidity">Humidity</string>
+    <string name="label_precip_chance">RAIN?</string>
+    <string name="content_desc_refresh">Refresh Button</string>
+    <string name="daily_forecast_title">This Week\'s Weather</string>
+    <string name="hardcoded_location_label">Portland, OR</string>
 </resources>

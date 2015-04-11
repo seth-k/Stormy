@@ -3,8 +3,8 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 tools:background="#ffaa00">
@@ -45,11 +45,10 @@
         android:layout_height="wrap_content"
         tools:text="100"
         android:id="@+id/temperatureLabel"
-        android:layout_alignTop="@id/circleImageView"
-        android:layout_alignBottom="@id/circleImageView"
         android:layout_alignLeft="@id/circleImageView"
         android:layout_alignRight="@id/circleImageView"
         android:gravity="center"
-        android:textColor="#f25019"/>
+        android:textColor="#f25019"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>

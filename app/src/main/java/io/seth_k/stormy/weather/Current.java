@@ -45,9 +45,8 @@ public class Current {
         SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
         formatter.setTimeZone(TimeZone.getTimeZone(mTimeZone));
         Date dateTime = new Date(getTime() * 1000);
-        String timeString = formatter.format(dateTime);
 
-        return timeString;
+        return formatter.format(dateTime);
     }
 
     public void setIcon(String icon) {
@@ -70,8 +69,8 @@ public class Current {
         mTemperature = temperature;
     }
 
-    public double getHumidity() {
-        return mHumidity;
+    public int getHumidity() {
+        return (int) Math.round(mHumidity*100);
     }
 
     public void setHumidity(double humidity) {

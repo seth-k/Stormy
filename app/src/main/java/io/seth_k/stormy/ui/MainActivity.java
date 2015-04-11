@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -73,8 +72,8 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
         Current current = mForecast.getCurrent();
         mTemperatureLabel.setText(current.getTemperature() + "");
         mTimeLabel.setText("At " + current.getFormatedTime() + " it will be");
-        mHumidityValue.setText(current.getHumidity()+"");
-        mPrecipValue.setText(current.getPrecipChance()+"%");
+        mHumidityValue.setText(current.getHumidity() + "%");
+        mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());
         Drawable drawable = getResources().getDrawable((int) current.getIconId());
         mIconImageView.setImageDrawable(drawable);
@@ -89,6 +88,9 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
     public void refreshForecast(View v) {
         double latitude = 45.5132;
         double longitude = -122.6711;
+
+        // test coord -> city name
+        mLocationLabel.setText(getLocationName(latitude, longitude));
 
         if (isNetworkAvailable()) {
             toggleRefresh();
@@ -119,6 +121,29 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
                 alertUserAboutError();
             }
         });
+    }
+
+    public String getLocationName(double latitude, double longitude) {
+
+        String cityName = "Not Found";
+        if (Geocoder.isPresent())
+        {
+            Geocoder geocoder = new Geocoder(getBaseContext(), Locale.getDefault());
+            try {
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+
+                if (addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    cityName = address.getLocality(); // + ", " + address.getAdminArea();
+                    Log.d(TAG, "City: " + cityName);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            cityName = "Not Available";
+        }
+        return cityName;
     }
 
     @OnClick(R.id.dailyButton)
