@@ -88,11 +88,15 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
                                 mLocationName +
                                 " Lat: " + mLatitude +
                                 " Long: " + mLongitude);
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                refreshForecast(mRefreshImageView);
-                            }
-                        });
+                        // Load forecast only if it hasn't been loaded before (ie. showing
+                        // placeholder text); otherwise wait for refresh button.
+                        if (mTemperatureLabel.getText().toString().equals(getString(R.string.temperature_loading))) {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    refreshForecast(mRefreshImageView);
+                                }
+                            });
+                        }
                     }
                 });
 
