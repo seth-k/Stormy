@@ -23,6 +23,7 @@ public class DailyForecastActivity extends Activity {
     private Day[] mDays;
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(android.R.id.empty) TextView mEmptyTextView;
+    @InjectView(R.id.locationLabel) TextView mLocationLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class DailyForecastActivity extends Activity {
         ButterKnife.inject(this);
 
         Intent intent = getIntent();
+        String locationName = intent.getStringExtra(MainActivity.LOCATION_NAME);
+        mLocationLabel.setText(locationName);
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
         mDays = Arrays.copyOf(parcelables, parcelables.length, Day[].class);
 
