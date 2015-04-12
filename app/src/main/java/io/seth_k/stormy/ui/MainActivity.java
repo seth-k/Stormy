@@ -27,7 +27,6 @@ import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
 import io.nlopez.smartlocation.location.config.LocationParams;
 import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesWithFallbackProvider;
-import io.nlopez.smartlocation.location.providers.LocationManagerProvider;
 import io.seth_k.stormy.R;
 import io.seth_k.stormy.datasource.WeatherFromForecastIO;
 import io.seth_k.stormy.datasource.WeatherSource;
@@ -55,7 +54,7 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
     @InjectView(R.id.progressBar) ProgressBar mProgressBar;
     private double mLatitude = 45.5132;
     private double mLongitude = -122.6711;
-    private String mLocationName = "";
+    private String mLocationName = "Default Locale";
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,17 +204,21 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
 
     @OnClick(R.id.dailyButton)
     public void startDailyActivity(View view) {
-        Intent intent = new Intent(this, DailyForecastActivity.class);
-        intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
-        intent.putExtra(LOCATION_NAME, mLocationName);
-        startActivity(intent);
+        if (mForecast != null) {
+            Intent intent = new Intent(this, DailyForecastActivity.class);
+            intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
+            intent.putExtra(LOCATION_NAME, mLocationName);
+            startActivity(intent);
+        }
     }
 
     @OnClick(R.id.hourlyButton)
     public void startHourlyActivity(View view){
-        Intent intent = new Intent(this, HourlyForecastActivity.class);
-        intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
-        startActivity(intent);
+        if (mForecast != null) {
+            Intent intent = new Intent(this, HourlyForecastActivity.class);
+            intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
+            startActivity(intent);
+        }
     }
 
     public Forecast getForecast() {

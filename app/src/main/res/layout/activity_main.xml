@@ -1,12 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context=".MainActivity"
-                android:background="@drawable/bg_gradient">
+                style="@style/activity_background"
+                android:paddingBottom="0dp"
+                tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,17 +12,18 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
-        android:textSize="150sp"/>
+        android:textSize="@dimen/temp_text_big"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/degreeSign"
         android:layout_toEndOf="@+id/temperatureLabel"
         android:layout_alignTop="@+id/temperatureLabel"
         android:layout_toRightOf="@+id/temperatureLabel"
         android:src="@drawable/degree"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="@dimen/degree_sign_position"
+        android:contentDescription="@string/content_desc_degree_sign"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +33,7 @@
         android:layout_above="@+id/temperatureLabel"
         android:layout_centerHorizontal="true"
         android:textColor="#80ffffff"
-        android:textSize="18sp"/>
+        android:textSize="@dimen/label_text_size"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,9 +42,9 @@
         android:id="@+id/locationLabel"
         android:layout_above="@+id/timeLabel"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="@dimen/location_bottom_margin"
         android:textColor="@android:color/white"
-        android:textSize="24sp"/>
+        android:textSize="@dimen/data_text_size"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -88,7 +85,7 @@
                 android:text="@string/percent_loading"
                 android:id="@+id/humidityValue"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/data_text_size"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
 
@@ -112,7 +109,7 @@
                 android:text="@string/percent_loading"
                 android:id="@+id/precipValue"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/data_text_size"
                 android:singleLine="true"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
@@ -125,9 +122,9 @@
         android:id="@+id/summaryLabel"
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/summary_top_margin"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/label_text_size"
         android:gravity="center_horizontal"/>
 
     <ImageView
@@ -156,23 +153,15 @@
         android:layout_centerHorizontal="true">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/label_hourly"
             android:id="@+id/hourlyButton"
-            android:layout_weight="1"
-            android:background="#40ffffff"
-            android:textColor="#ffffffff"/>
+            style="@style/forecast_button"/>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/label_daily"
             android:id="@+id/dailyButton"
-            android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:background="#40ffffff"
-            android:layout_marginLeft="2dp"/>
+            android:layout_marginLeft="2dp"
+            style="@style/forecast_button"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,10 +3,10 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="28dp"
-                android:paddingRight="28dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
+                android:paddingLeft="@dimen/daily_list_horizontal_padding"
+                android:paddingRight="@dimen/daily_list_horizontal_padding"
+                android:paddingTop="@dimen/daily_list_vertical_padding"
+                android:paddingBottom="@dimen/daily_list_vertical_padding"
                 tools:background="#ffaa00">
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/circleImageView"
         android:layout_toEndOf="@+id/circleImageView"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="@dimen/daily_list_element_padding"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,8 +36,8 @@
         android:layout_toRightOf="@+id/iconImageView"
         android:layout_toEndOf="@+id/iconImageView"
         android:textColor="#ffffffff"
-        android:textSize="20sp"
-        android:paddingLeft="10dp"
+        android:textSize="@dimen/daily_day_text_size"
+        android:paddingLeft="@dimen/daily_list_element_padding"
         tools:text="Wednesday"/>
 
     <TextView

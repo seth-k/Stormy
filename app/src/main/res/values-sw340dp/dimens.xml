@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="location_bottom_margin">60dp</dimen>
+    <dimen name="summary_top_margin">40dp</dimen>
+    <dimen name="daily_list_horizontal_padding">32dp</dimen>
+</resources>

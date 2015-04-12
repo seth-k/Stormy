@@ -2,4 +2,20 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">32dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="refresh_to_location_margin">30dp</dimen>
+    <dimen name="location_bottom_margin">40dp</dimen>
+    <dimen name="temp_text_big">150sp</dimen>
+    <dimen name="degree_sign_position">50dp</dimen>
+    <dimen name="label_text_size">18sp</dimen>
+    <dimen name="data_text_size">24sp</dimen>
+    <dimen name="summary_top_margin">25dp</dimen>
+
+    <dimen name="hourly_time_size">24sp</dimen>
+    <dimen name="hourly_summary_horizontal_padding">15dp</dimen>
+    <dimen name="hourly_time_width">80dp</dimen>
+
+    <dimen name="daily_day_text_size">20sp</dimen>
+    <dimen name="daily_list_vertical_padding">4dp</dimen>
+    <dimen name="daily_list_horizontal_padding">28dp</dimen>
+    <dimen name="daily_list_element_padding">10dp</dimen>
 </resources>

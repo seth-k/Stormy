@@ -8,11 +8,11 @@
                 tools:background="#ffaa00">
 
     <TextView
-        android:layout_width="80dp"
+        android:layout_width="@dimen/hourly_time_width"
         android:layout_height="wrap_content"
         android:id="@+id/timeLabel"
         android:textColor="#ffffffff"
-        android:textSize="24sp"
+        android:textSize="@dimen/hourly_time_size"
         tools:text="12 PM"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -36,19 +36,19 @@
         android:layout_alignParentEnd="true"
         android:textColor="#ffffffff"
         tools:text="100"
-        android:textSize="24sp"/>
+        android:textSize="@dimen/hourly_time_size"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text=""
         android:id="@+id/summaryLabel"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/iconImageView"
         android:layout_toEndOf="@+id/iconImageView"
         android:textColor="#ffffffff"
         android:layout_toLeftOf="@+id/temperatureLabel"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:paddingLeft="@dimen/hourly_summary_horizontal_padding"
+        android:paddingRight="@dimen/hourly_summary_horizontal_padding"
         tools:text="Partly Cloudy"/>
 </RelativeLayout>
