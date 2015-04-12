@@ -9,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -64,7 +63,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
         mProgressBar.setVisibility(View.INVISIBLE);
 
 //        refreshForecast(mRefreshImageView); // Load the forecast for the first time.
-        Log.d(TAG, "Main UI Thread is running");
     }
 
     @Override
@@ -72,7 +70,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
         super.onResume();
 
         //start location service
-        Log.d(TAG, "Starting location service....");
         SmartLocation
                 .with(this)
                 .location()
@@ -84,10 +81,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
                         mLatitude = location.getLatitude();
                         mLongitude = location.getLongitude();
                         mLocationName = getLocationName(mLatitude, mLongitude);
-                        Log.d(TAG, "New Location: " +
-                                mLocationName +
-                                " Lat: " + mLatitude +
-                                " Long: " + mLongitude);
                         // Load forecast only if it hasn't been loaded before (ie. showing
                         // placeholder text); otherwise wait for refresh button.
                         if (mTemperatureLabel.getText().toString().equals(getString(R.string.temperature_loading))) {
@@ -105,7 +98,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "Stopping location service....");
         SmartLocation.with(this).location().stop();
     }
 
@@ -191,7 +183,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
                 if (addresses.size() > 0) {
                     Address address = addresses.get(0);
                     cityName = address.getLocality(); // + ", " + address.getAdminArea();
-                    Log.d(TAG, "City: " + cityName);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

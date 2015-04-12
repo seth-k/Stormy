@@ -1,7 +1,5 @@
 package io.seth_k.stormy.datasource;
 
-import android.util.Log;
-
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -50,7 +48,6 @@ public abstract class WeatherSource {
             public void onResponse(Response response) throws IOException {
                 try {
                     String forecastData = response.body().string();
-                    Log.v(TAG, forecastData);
                     if (response.isSuccessful()) {
                         Forecast forecast = parseForecastDetails(forecastData);
                         mCallback.onSuccess(forecast);
@@ -58,7 +55,6 @@ public abstract class WeatherSource {
                         mCallback.onFailure();
                     }
                 } catch (IOException | JSONException e) {
-                    Log.e(WeatherFromForecastIO.TAG, "Exception Caught: ", e);
                     mCallback.onFailure();
                 }
             }

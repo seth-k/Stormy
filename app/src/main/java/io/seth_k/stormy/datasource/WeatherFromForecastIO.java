@@ -1,7 +1,5 @@
 package io.seth_k.stormy.datasource;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +78,6 @@ public class WeatherFromForecastIO extends WeatherSource {
     public Current getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
-        Log.i(TAG, "From JSON: " + timezone);
 
         JSONObject currently = forecast.getJSONObject("currently");
         Current current = new Current();
@@ -91,8 +88,6 @@ public class WeatherFromForecastIO extends WeatherSource {
         current.setSummary(currently.getString("summary"));
         current.setTemperature(currently.getDouble("temperature"));
         current.setTimeZone(timezone);
-
-        Log.d(TAG, current.getFormatedTime());
 
         return current;
     }
