@@ -26,6 +26,7 @@ import butterknife.OnClick;
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
 import io.nlopez.smartlocation.location.config.LocationParams;
+import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesWithFallbackProvider;
 import io.nlopez.smartlocation.location.providers.LocationManagerProvider;
 import io.seth_k.stormy.R;
 import io.seth_k.stormy.datasource.WeatherFromForecastIO;
@@ -76,7 +77,7 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
         SmartLocation
                 .with(this)
                 .location()
-                .provider(new LocationManagerProvider())
+                .provider(new LocationGooglePlayServicesWithFallbackProvider(this))
                 .config(LocationParams.LAZY)
                 .start(new OnLocationUpdatedListener() {
                     @Override
