@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import io.seth_k.stormy.weather.Current;
 import io.seth_k.stormy.weather.Day;
+import io.seth_k.stormy.weather.Forecast;
 import io.seth_k.stormy.weather.Hour;
 
 /**
@@ -20,18 +21,41 @@ public class WeatherFromForecastIO extends WeatherSource {
         super(callback);
     }
 
-    private String getApiKey() {
-        return ApiKey.getApiKey();
-    }
-
     @Override
     protected String getForecastUrl(double latitude, double longitude) {
         return "https://api.forecast.io/forecast/" + ApiKey.getApiKey() +
-                "/" + latitude + "," + longitude;
+                "/" + latitude + "," + longitude +
+                "?exclude=minutely&units=auto";
     }
 
+    /**
+     * Builds the Forecast from the data retrieved from API.
+     * @param forecastData The forecast data as retrieved from the source in String form.
+     * @return The complete complete current, hourly and daily forecast.
+     * @throws WeatherSourceException
+     */
     @Override
-    public Day[] getDailyForecast(String jsonData) throws JSONException {
+    protected Forecast parseForecastDetails(String forecastData) throws WeatherSourceException {
+        Forecast forecast = new Forecast();
+
+        try {
+            forecast.setCurrent(getCurrentDetails(forecastData));
+            forecast.setHourlyForecast(getHourlyForecast(forecastData));
+            forecast.setDailyForecast(getDailyForecast(forecastData));
+        } catch (JSONException e) {
+            throw new WeatherSourceException(e);
+        }
+
+        return forecast;
+    }
+
+    /**
+     * Parses forecast data into a list of daily forecasts in chronological order.
+     * @param jsonData The forecast data as retrieved from the source in String form.
+     * @return An array of Daily forecasts. The number of days returned depends on the API.
+     * @throws JSONException
+     */
+    protected Day[] getDailyForecast(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
         JSONObject daily = forecast.getJSONObject("daily");
@@ -52,8 +76,13 @@ public class WeatherFromForecastIO extends WeatherSource {
         return days;
     }
 
-    @Override
-    public Hour[] getHourlyForecast(String jsonData) throws JSONException {
+    /**
+     * Parses forecast data into a list of hourly forecasts in chronological order.
+     * @param jsonData The forecast data as retrieved from the source in String form.
+     * @return An array of Hourly forecasts. The number of hours returned depends on the API.
+     * @throws JSONException
+     */
+    protected Hour[] getHourlyForecast(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
         JSONObject hourly = forecast.getJSONObject("hourly");
@@ -74,8 +103,13 @@ public class WeatherFromForecastIO extends WeatherSource {
         return hours;
     }
 
-    @Override
-    public Current getCurrentDetails(String jsonData) throws JSONException {
+    /**
+     * Parses forecast data for the current weather conditions.
+     * @param jsonData The forecast data as retrieved from the source in String form.
+     * @return The Current weather conditions.
+     * @throws JSONException
+     */
+    protected Current getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
 

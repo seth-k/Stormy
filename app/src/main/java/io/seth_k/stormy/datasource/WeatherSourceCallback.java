@@ -16,5 +16,5 @@ public interface WeatherSourceCallback {
     /**
      *  Called if we weren't able to retrieve the weather forecast for whatever reason.
      */
-    void onFailure();
+    void onFailure(Exception e);
 }

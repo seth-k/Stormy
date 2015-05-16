@@ -152,7 +152,7 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
     }
 
     @Override
-    public void onFailure() {
+    public void onFailure(Exception e) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
