@@ -18,7 +18,7 @@ import io.seth_k.stormy.weather.Forecast;
  * the onSuccess() callback.
  */
 public abstract class WeatherSource {
-    public static final String TAG = WeatherSource.class.getSimpleName();
+    //public static final String TAG = WeatherSource.class.getSimpleName();
 
     protected final WeatherSourceCallback mCallback;
 

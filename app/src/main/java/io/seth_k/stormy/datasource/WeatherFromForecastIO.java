@@ -15,7 +15,7 @@ import io.seth_k.stormy.weather.Hour;
  *
  */
 public class WeatherFromForecastIO extends WeatherSource {
-    public static final String TAG = WeatherFromForecastIO.class.getSimpleName();
+//    public static final String TAG = WeatherFromForecastIO.class.getSimpleName();
 
     public WeatherFromForecastIO(WeatherSourceCallback callback) {
         super(callback);

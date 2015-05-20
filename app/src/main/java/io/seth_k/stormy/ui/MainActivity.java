@@ -61,8 +61,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         mProgressBar.setVisibility(View.INVISIBLE);
-
-//        refreshForecast(mRefreshImageView); // Load the forecast for the first time.
     }
 
     @Override
@@ -141,7 +139,7 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
 
     @Override
     public void onSuccess(Forecast forecast) {
-        setForecast(forecast);
+        mForecast = forecast;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -210,14 +208,6 @@ public class MainActivity extends ActionBarActivity  implements WeatherSourceCal
             intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
             startActivity(intent);
         }
-    }
-
-    public Forecast getForecast() {
-        return mForecast;
-    }
-
-    public void setForecast(Forecast forecast) {
-        mForecast = forecast;
     }
 
     public boolean isNetworkAvailable() {
